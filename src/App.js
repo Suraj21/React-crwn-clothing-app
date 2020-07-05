@@ -48,11 +48,11 @@ class App extends React.Component {
   render() {
   return (
     <div>
-    <Header />
+    <Header currentUser={this.state.currentUser}/>
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/hats' component={ShopPage} />
-        <Route path='/SignIn' component={SignInAndSignUpPage} />
+        <Route path='/signin' component={SignInAndSignUpPage} />
       </Switch>
     </div>
   )}
