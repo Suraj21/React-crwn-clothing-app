@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 //import * as serviceWorker from './serviceWorker';
 import { BrowserRouter} from 'react-router-dom'
+import { Provider } from 'react-redux';
+import  store  from './redux/store';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>,
+  //It is a component and which is a parent or eveything of application provided by redux
+  // so that the user can store everything of application like state at application level or dispatch 
+  // action or we can pull values to our components
+ <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
