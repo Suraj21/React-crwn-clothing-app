@@ -5,7 +5,11 @@ import App from './App';
 //import * as serviceWorker from './serviceWorker';
 import { BrowserRouter} from 'react-router-dom'
 import { Provider } from 'react-redux';
-import  store  from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { store, persistor } from './redux/store';
+
+
 
 ReactDOM.render(
   //It is a component and which is a parent or eveything of application provided by redux
@@ -13,9 +17,11 @@ ReactDOM.render(
   // action or we can pull values to our components
  <Provider store={store}>
     <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <PersistGate persistor={persistor}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
