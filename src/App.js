@@ -10,9 +10,11 @@ import Header from './Components/header/header.component';
 import SignInAndSignUpPage from './Pages/sign-in-and-sign-out/sign-in-and-sign-out.component';
 import CheckoutPage from './Pages/checkout/checkout.component';
 
+// import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+//import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 class App extends React.Component {
 
@@ -29,7 +31,7 @@ class App extends React.Component {
 
   componentDidMount() {
     
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser} = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -48,12 +50,16 @@ class App extends React.Component {
           //   }
           // });
 
-          console.log(this.state);
+          // console.log(this.state);
         });
       }
 
       //this.setState({ currentUser: userAuth });
       setCurrentUser(userAuth);
+
+      //below code was added to push data to the forestore only once hence commented
+      // addCollectionAndDocuments('collections',
+      // collectionArray.map(({title, items}) => ({title, items})));
     });
   }
 
